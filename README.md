@@ -63,10 +63,10 @@ Proje, nesne yönelimli karmaşadan uzak, okunabilirliği ve sunum kolaylığın
 
 ## 🏆 Değerlendirme Kriterleri Karşılanma Durumu
 
-- **Oyun Çalışıyor :** Ses kaydı, dönüştürme ve API doğrulaması entegre çalışıyor.
-- **Puanlama Sistemi :** Seviye zorluğuna göre katlanarak artan puanlama mevcuttur.
-- **Zorluk Seviyesi Ayarı :** Kullanıcıya tam 10 farklı seçenek sunulmaktadır.
-- **Oyun Bitti :** Sorular bitince oyun durur ve detaylı performans özeti basılır.
-- **Arayüz :** Görsel ASCII şablonları ve fonksiyonel emojiler kullanılmıştır.
-- **Yaratıcılık :** Çok dilli destek (Almanca/İngilizce), 11 adet gizli başarım ve zamana duyarlı dinamik ödüller eklenmiştir.
+Ses kaydı, dönüştürme ve API doğrulaması entegre çalışıyor.
+Seviye zorluğuna göre katlanarak artan puanlama mevcuttur.
+Kullanıcıya tam 10 farklı seçenek sunulmaktadır.
+Sorular bitince oyun durur ve detaylı performans özeti basılır.
+Görsel ASCII şablonları ve fonksiyonel emojiler kullanılmıştır.
+Çok dilli destek (Almanca/İngilizce), 13 adet gizli başarım ve zamana duyarlı dinamik ödüller eklenmiştir.
 
