@@ -9,7 +9,7 @@ from googletrans import Translator
 # --- GÖRSEL VE ASCII ELEMENTLERİ ---
 LOGO = """
 ===========================================================
- 🎯  SPEAK & LEARN: ÇOK DİLLİ KONUŞMA OYUNU  🎯
+ 🎯  Google Translate İle Telaffuz: ÇOK DİLLİ KONUŞMA OYUNU  🎯
 ===========================================================
 """
 WIN_ART = """
@@ -67,14 +67,14 @@ KELİMELER = {
         "liste": ["yaratıcılık", "küreselleşme", "kişiselleştirme", "gerçekleştirmek", "bilinçaltı", "ödünç almak", "çelişki", "farkındalık", "sermaye", "enflasyon", "yatırım", "üretim", "tüketim", "istihdam", "rekabet", "strateji", "politika", "felsefe", "psikoloji", "sosyoloji", "antropoloji", "arkeoloji", "astronomi", "biyoloji", "kimya"]
     },
     "10": {
-        "ad": "efsanevi uzman (expert)", 
+        "ad": "efsanevi (expert)", 
         "puan": 80, 
         "liste": ["sürdürülebilirlik", "çentiklendirmek", "girişimcilik", "kamulaştırma", "çeşitlendirme", "kurumsallaştırmak", "detaylandırmak", "belgelendirmek", "özelleştirmek", "yapılandırmak", "ilişkilendirmek", "değerlendirmek", "karşılaştırılabilirlik", "sömürgeleştirmek", "demokratikleştirmek"]
     }
 }
 
 # --- GLOBAL AYARLAR ---
-FS = 44100       
+FS = 45000       
 SURE = 4         
 TOPLAM_SORU = 3  
 
@@ -159,7 +159,7 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         kazanilan_basarim_var_mi = True
         
     if puan == maks_puan and seviye_no == "10" and maks_puan > 0:
-        print("👑 [DİL KRALI] -> En üst seviye olan EFSANEVİ UZMAN modda kusursuz oynadınız!")
+        print("👑 [DİL KRALI] -> En üst seviye olan EFSANEVİ modda kusursuz oynadınız!")
         kazanilan_basarim_var_mi = True
 
     if dogru_sayisi >= 1:
@@ -186,16 +186,24 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
     except Exception:
         pass 
 
-    if puan == maks_puan and seviye_no in ["1", "2", "3"] and maks_puan > 0:
+    if puan == maks_puan and seviye_no in ["1", "2", "3"] and maks_puan > 90:
         print("🛠️  [ÇIRAKLIKTAN USTALIĞA] -> Temel seviyeleri başarıyla fethettiniz!")
         kazanilan_basarim_var_mi = True
 
-    if puan >= 100:
-        print("💎 [HIZLI YÜKSELİŞ] -> Tek bir oyunda 100 puan barajını aşmayı başardınız!")
+    if puan >= 200:
+        print("💎 [HIZLI YÜKSELİŞ] -> Tek bir oyunda 200 puan barajını aşmayı başardınız!")
         kazanilan_basarim_var_mi = True
 
-    if puan >= 150:
-        print("🔥 [REKORTMEN] -> 150 puandan fazla toplayarak harika bir skora imza attınız!")
+    if puan >= 300:
+        print("🔥 [REKORTMEN] -> 300 puandan fazla toplayarak harika bir skora imza attınız!")
+        kazanilan_basarim_var_mi = True
+     
+    if puan >= 500:
+        print("👑 [KRAL] -> 500 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
+        kazanilan_basarim_var_mi = True
+
+    if puan >= 1000:
+        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 1000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
         kazanilan_basarim_var_mi = True
 
     if puan == maks_puan and int(seviye_no) >= 7:
@@ -211,7 +219,7 @@ def rutbe_hesapla(puan, maks_puan):
         print("🔹 RÜTBE: ACEMİ ÖĞRENCİ (Tourist)")
     else:
         yuzde = (puan / maks_puan) * 100
-        if yuzde <= 33:
+        if yuzde <= 30:
             print("🔹 RÜTBE: SOKAK REHBERİ (Beginner)")
         elif yuzde <= 50:
             print("🔹 RÜTBE: KÜLTÜR ELÇİSİ (Intermediate)")
