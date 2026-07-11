@@ -36,7 +36,7 @@ pip install sounddevice scipy SpeechRecognition googletrans==3.1.0a0
 
 1. Proje klasöründe bir terminal açın ve oyunu başlatın:
    ```bash
-   python oyun.py
+   python main.py
    ```
 2. **Hedef Dil Seçimi:** Pratik yapmak istediğiniz dili (İngilizce veya Almanca) seçin.
 3. **Zorluk Seçimi:** 1 ile 10 arasında bir zorluk seviyesi belirleyin.
