@@ -239,7 +239,16 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
     if puan == maks_puan and int(seviye_no) >= 7:
         print("📜 [DİPLOMAT SIFATI] -> Üst düzey zorluklarda en yüksek rütbeyi kaparak listenin zirvesine yerleştiniz!")
         kazanilan_basarim_var_mi = True
+    # 14. Dil Avcısı
+    if dogru_sayisi == TOPLAM_SORU and int(seviye_no) >= 5:
+        print("🎯 [DİL AVCISI] -> Orta ve üzeri seviyelerde tüm kelimeleri eksiksiz avladınız!")
+        kazanilan_basarim_var_mi = True
 
+    # 15. İstikrarlı Kelime bükücü
+    if isinstance(en_uzun_dogru_kelime, int) and en_uzun_dogru_kelime >= 15:
+        print("🧠 [İSTİKRARLI KELİME BÜKÜCÜ] -> 15 harften uzun, telaffuzu aşırı zor devasa bir kelimeyi devirdiniz!")
+        kazanilan_basarim_var_mi = True
+     
     if not kazanilan_basarim_var_mi:
         print("🤷 Henüz özel bir başarım kilidi açılmadı.")
     print("-" * 59 + "\n")
