@@ -16,7 +16,7 @@ Bu proje, Python programlama dili kullanılarak geliştirilmiş, oyuncuların **
 - **Dinamik Ses Kaydı ve Tanıma:** Mikrofon verisini anlık yakalama ve Google Speech Recognition altyapısı ile anında metne dönüştürme.
 - **Canlı Çeviri Kontrolü:** `googletrans` kütüphanesi entegrasyonu ile kelimelerin doğruluğunu bulut üzerinden anlık doğrulama.
 - **6 Kademeli Rütbe Sistemi:** Başarı yüzdesine göre oyuncuya verilen dinamik rütbeler (Tourist, Beginner, ... , Native Speaker).
-- **11 Gizli Başarım (Achievements):** Oyuncuyu tekrar oynamaya teşvik eden özel unvanlar (Gece Kuşu, Son Saniye Golü, Devlerin Kelimesi vb.).
+- **13 Gizli Başarım (Achievements):** Oyuncuyu tekrar oynamaya teşvik eden özel unvanlar (Gece Kuşu, Son Saniye Golü, Devlerin Kelimesi vb.).
 - **Kullanıcı Dostu ASCII Arayüz:** Emojiler ve temiz konsol çizimleriyle zenginleştirilmiş scannable görünüm.
 
 ---
