@@ -215,24 +215,24 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         kazanilan_basarim_var_mi = True
 
     # 9. Hızlı Yükseliş
-    if puan >= 200:
-        print("💎 [HIZLI YÜKSELİŞ] -> Tek bir oyunda 200 puan barajını aşmayı başardınız!")
+    if puan >= 350:
+        print("💎 [HIZLI YÜKSELİŞ] -> Tek bir oyunda 350 puan barajını aşmayı başardınız!")
         kazanilan_basarim_var_mi = True
 
     # 10. Rekortmen
-    if puan >= 300:
-        print("🔥 [REKORTMEN] -> 300 puandan fazla toplayarak harika bir skora imza attınız!")
+    if puan >= 500:
+        print("🔥 [REKORTMEN] -> 500 puandan fazla toplayarak harika bir skora imza attınız!")
         kazanilan_basarim_var_mi = True
      
     # 11. Kral
-    if puan >= 500:
-        print("👑 [KRAL] -> 500 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
+    if puan >= 2500:
+        print("👑 [KRAL] -> 2500 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
         kazanilan_basarim_var_mi = True
 
     # 12. Hükümdar
 
-    if puan >= 1000:
-        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 1000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
+    if puan >= 5000:
+        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 5000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
         kazanilan_basarim_var_mi = True
 
     # 13. Diplomat Sıfatı
@@ -241,7 +241,7 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         kazanilan_basarim_var_mi = True
 
     if not kazanilan_basarim_var_mi:
-        print("🤷 Henüz özel bir başarım kilidi açılmadı. Tekrar deneyin!")
+        print("🤷 Henüz özel bir başarım kilidi açılmadı.")
     print("-" * 59 + "\n")
 
 def rutbe_belirle(toplam_puan):
