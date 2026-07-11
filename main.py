@@ -246,13 +246,13 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
 
 def rutbe_belirle(toplam_puan):
     print("🎖️  OYUNCU RÜTBENİZ:")
-    if toplam_puan == 0:
+    if toplam_puan >=50:
         print("⚡ Rütbe: ÇAYLAK (Pratik yapmaya devam edin!)")
-    elif toplam_puan <= 50:
+    elif toplam_puan >= 100:
         print("📚 Rütbe: ÖĞRENMEYE İSTEKLİ (Temeliniz oluşuyor)")
-    elif toplam_puan <= 120:
+    elif toplam_puan <= 500:
         print("🚀 Rütbe: AKICI KONUŞUR (Güzel telaffuz, tebrikler!)")
-    else:
+    elif toplam_puan >= 500:
         print("🌟 Rütbe: DİL ÜSTADI / NATIVE SPEAKER (Harika bir performans!)")
     print("=" * 59 + "\n")
 
