@@ -26,7 +26,7 @@ KELİMELER = {
     "1": {
         "ad": "temel başlangıç (a1-)", 
         "puan": 10, 
-        "liste": ["kedi", "köpek", "su", "ev", "süt", "kuş", "ağaç", "gül", "ay", "güneş", "baba", "anne", "top", "balık", "çay", "muz", "et", "gün", "el", "göz", "yol", "oda", "çorba", "tuz", "at"]
+        "liste": ["kedi", "köpek", "şu", "ev", "süt", "kuş", "ağaç", "gül", "ay", "güneş", "baba", "anne", "top", "balık", "çay", "muz", "et", "gün", "el", "göz", "yol", "oda", "çorba", "tuz", "at"]
     },
     "2": {
         "ad": "başlangıç üstü (a1+)", 
