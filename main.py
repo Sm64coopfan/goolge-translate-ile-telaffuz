@@ -246,7 +246,7 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
 
     # 15. İstikrarlı Kelime bükücü
     if isinstance(en_uzun_dogru_kelime, int) and en_uzun_dogru_kelime >= 15:
-        print("🧠 [İSTİKRARLI KELİME BÜKÜCÜ] -> 15 harften uzun, telaffuzu aşırı zor devasa bir kelimeyi devirdiniz!")
+        print("🧠 [SON KELİME BÜKÜCÜ!] -> 15 harften uzun, telaffuzu aşırı zor devasa bir kelimeyi devirdiniz!")
         kazanilan_basarim_var_mi = True
      
     if not kazanilan_basarim_var_mi:
