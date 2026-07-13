@@ -215,24 +215,24 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         kazanilan_basarim_var_mi = True
 
     # 9. Hızlı Yükseliş
-    if puan >= 350:
-        print("💎 [HIZLI YÜKSELİŞ] -> Tek bir oyunda 350 puan barajını aşmayı başardınız!")
+    if puan >= 1000:
+        print("💎 [HIZLI YÜKSELİŞ] -> oyunda 1000 puan barajını aşmayı başardınız!")
         kazanilan_basarim_var_mi = True
 
     # 10. Rekortmen
-    if puan >= 500:
-        print("🔥 [REKORTMEN] -> 500 puandan fazla toplayarak harika bir skora imza attınız!")
+    if puan >= 5000:
+        print("🔥 [REKORTMEN] -> 5000 puandan fazla toplayarak harika bir skora imza attınız!")
         kazanilan_basarim_var_mi = True
      
     # 11. Kral
-    if puan >= 2500:
-        print("👑 [KRAL] -> 2500 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
+    if puan >= 10000:
+        print("👑 [KRAL] -> 10000 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
         kazanilan_basarim_var_mi = True
 
     # 12. Hükümdar
 
-    if puan >= 5000:
-        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 5000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
+    if puan >= 50000:
+        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 50000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
         kazanilan_basarim_var_mi = True
 
     # 13. Diplomat Sıfatı
