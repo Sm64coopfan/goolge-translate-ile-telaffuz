@@ -49,7 +49,7 @@ pip install sounddevice scipy SpeechRecognition googletrans==3.1.0a0
 
 - **Rütbeler:**
 - *Başlangıç, Çaylak, Öğrenmeye istekli, Akıcı konuşur, Uzman mütercim, Dil üstadı ve Kelimelerin Efendisi.*
-- **Başarımlar:** *Kusursuz Telaffuz, Dil Kralı, İlk Adım, Şanssız Gün, Devlerin Kelimesi, Son Saniye Golü, Gece Kuşu Telaffuzu, Çıraklıktan Ustalığa, Hızlı Yükseliş, Rekortmen, Kral, Hükümdar, Diplomat Sıfatı.*
+- **Başarımlar:** *Kusursuz Telaffuz, Dil Kralı, İlk Adım, Şanssız Gün, Devlerin Kelimesi, Son Saniye Golü, Gece Kuşu Telaffuzu, Çıraklıktan Ustalığa, Hızlı Yükseliş, Rekortmen, Kral, Hükümdar, Diplomat Sıfatı, Dil avcısı ve Son Kelime Bükücü*
 
 > 💡 **Not:** Başarımlar ve rütbeler oyunun adil kalması için kalıcı puandan bağımsız olarak **sadece o an oynadığınız turun skoruna** göre hesaplanır.
 
