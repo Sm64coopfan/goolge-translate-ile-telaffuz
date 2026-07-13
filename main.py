@@ -1,8 +1,8 @@
 import time
 import datetime
 import random
-import json  # Hafıza yönetimi için eklendi
-import os    # Dosya kontrolü için eklendi
+import json  
+import os    
 import sounddevice as sd
 import scipy.io.wavfile as wav
 import speech_recognition as sr
@@ -71,12 +71,12 @@ KELİMELER = {
     "10": {
         "ad": "efsanevi (expert)", 
         "puan": 80, 
-        "liste": ["sürdürülebilirlik", "çentiklendirmek", "girişimcilik", "kamulaştırma", "çeşitlendirme", "kurumsallaştırmak", "detaylandırmak", "belgelendirmek", "özelleştirmek", "yapılandırmak", "ilişkilendirmek", "değerlendirmek", "karşılaştırılabilirlik", "sömürgeleştirmek", "demokratikleştirmek"]
+        "liste": ["sürdürülebilirlik", "girişimcilik", "kamulaştırma", "çeşitlendirme", "kurumsallaştırmak", "detaylandırmak", "belgelendirmek", "özelleştirmek", "yapılandırmak", "ilişkilendirmek", "değerlendirmek", "karşılaştırılabilirlik", "sömürgeleştirmek", "demokratikleştirmek"]
     }
 }
 
 # --- GLOBAL AYARLAR ---
-FS = 45000       
+FS = 44100       
 SURE = 4         
 TOPLAM_SORU = 3  
 SKOR_DOSYASI = "skor_tablosu.json" 
@@ -98,28 +98,32 @@ def skoru_kaydet(puan):
     except Exception:
         pass
 
-# --- FONKSİYONLAR ---
-
 def baslangic_ekrani():
     print(LOGO)
     print("🎮 OYUN KURALLARI:")
-    print("1. Önce pratik yapmak istediğiniz hedef dili (İngilizce / Almanca) seçeceksiniz.")
+    print("1. Önce pratik yapmak istediğiniz hedef dili seçeceksiniz (İngilizce/Almanca/İspanyolca/Fransızca).")
     print("2. Ekranda Türkçe bir kelime göreceksiniz.")
     print("3. Sistem 'KAYIT BAŞLADI' dediğinde hedef dildeki karşılığını telaffuz edin.")
-    print("🎖️  Oyun sonunda rütbeniz belirlenir ve GİZLİ BAŞARIMLARINIZ listelenir!")
+    print("🎖️  Oyun sonunda 7 farklı rütbedeki yeriniz belirlenir ve GİZLİ BAŞARIMLARINIZ listelenir!")
     print("-----------------------------------------------------------\n")
 
 def dil_sec():
     while True:
         print("🌐 HEDEF DİL SEÇİMİ:")
-        print(" İNGİLİZCE (English)")
-        print(" ALMANCA (Deutsch)")
-        secim = input("\n👉 Lütfen bir dil numarası girin (1-2): ").strip()
+        print(" İNGİLİZCE  (English)")
+        print(" ALMANCA    (Deutsch)")
+        print(" İSPANYOLCA (Español)")
+        print(" FRANSIZCA  (Français)")
+        secim = input("\n👉 Lütfen bir dil numarası girin (1-4): ").strip()
         if secim == "1":
             return {"kod": "en", "tanima_kodu": "en-US", "ad": "İngilizce"}
         elif secim == "2":
             return {"kod": "de", "tanima_kodu": "de-DE", "ad": "Almanca"}
-        print("\n⚠️ Geçersiz seçim! Lütfen 1 veya 2 yazın.\n")
+        elif secim == "3":
+            return {"kod": "es", "tanima_kodu": "es-ES", "ad": "İspanyolca"}
+        elif secim == "4":
+            return {"kod": "fr", "tanima_kodu": "fr-FR", "ad": "Fransızca"}
+        print("\n⚠️ Geçersiz seçim! Lütfen 1 ile 4 arasında bir rakam yazın.\n")
 
 def zorluk_sec():
     while True:
@@ -146,6 +150,8 @@ def ses_kaydet():
 
 def sesi_metne_cevir(dil_tanima_kodu):
     recognizer = sr.Recognizer()
+    if not os.path.exists("gecici_ses.wav"):
+        return ""
     with sr.AudioFile("gecici_ses.wav") as source:
         ses_verisi = recognizer.record(source)
         try:
@@ -166,7 +172,7 @@ def kelime_ceviri_al(turkce_kelime, hedef_dil_kodu):
     except Exception:
         return "error"
 
-def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dogru_kelime, son_soru_dogru_mu):
+def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dogru_kelime, son_soru_dogru_mu, genel_toplam):
     print("\n🏅 KAZANILAN BAŞARIMLAR:")
     kazanilan_basarim_var_mi = False
 
@@ -191,7 +197,7 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         kazanilan_basarim_var_mi = True
 
     # 5. Devlerin Kelimesi
-    if isinstance(en_uzun_dogru_kelime, int) and en_uzun_dogru_kelime >= 10:
+    if en_uzun_dogru_kelime >= 10:
         print("🦕 [DEVLERİN KELİMESİ] -> 10 harften daha uzun ve zor bir kelimeyi tekte bildiniz!")
         kazanilan_basarim_var_mi = True
 
@@ -210,42 +216,42 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
         pass 
 
     # 8. Çıraklıktan Ustalığa
-    if puan == maks_puan and seviye_no in ["1", "2", "3"] and maks_puan > 90:
+    if puan == maks_puan and seviye_no in ["1", "2", "3"] and genel_toplam > 90:
         print("🛠️  [ÇIRAKLIKTAN USTALIĞA] -> Temel seviyeleri başarıyla fethettiniz!")
         kazanilan_basarim_var_mi = True
 
     # 9. Hızlı Yükseliş
-    if puan >= 1000:
-        print("💎 [HIZLI YÜKSELİŞ] -> oyunda 1000 puan barajını aşmayı başardınız!")
-        kazanilan_basarim_var_mi = True
-
-    # 10. Rekortmen
-    if puan >= 5000:
-        print("🔥 [REKORTMEN] -> 5000 puandan fazla toplayarak harika bir skora imza attınız!")
+    if genel_toplam >= 1000:
+        print("💎 [HIZLI YÜKSELİŞ] -> Oyunda 1000 puan barajını aşmayı başardınız!")
         kazanilan_basarim_var_mi = True
      
+    # 10. Rekortmen
+    if genel_toplam >= 5000:
+        print("🔥 [REKORTMEN] -> 5000 puandan fazla toplayarak harika bir skora imza attınız!")
+        kazanilan_basarim_var_mi = True
+
     # 11. Kral
-    if puan >= 10000:
+    if genel_toplam >= 10000:
         print("👑 [KRAL] -> 10000 puandan fazla toplayarak resmen bir kral ilan edildiniz!")
         kazanilan_basarim_var_mi = True
 
     # 12. Hükümdar
-
-    if puan >= 50000:
-        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 50000 puan topladınız ve kelimeler diyarı nın hühümdarı oldunuz!")
+    if genel_toplam >= 50000:
+        print("👑 [HÜKÜMDAR] -> TEBRİKLER ! 50000 puan topladınız ve kelimeler diyarı nın hükümdarı oldunuz!")
         kazanilan_basarim_var_mi = True
 
     # 13. Diplomat Sıfatı
     if puan == maks_puan and int(seviye_no) >= 7:
         print("📜 [DİPLOMAT SIFATI] -> Üst düzey zorluklarda en yüksek rütbeyi kaparak listenin zirvesine yerleştiniz!")
         kazanilan_basarim_var_mi = True
+
     # 14. Dil Avcısı
     if dogru_sayisi == TOPLAM_SORU and int(seviye_no) >= 5:
         print("🎯 [DİL AVCISI] -> Orta ve üzeri seviyelerde tüm kelimeleri eksiksiz avladınız!")
         kazanilan_basarim_var_mi = True
 
     # 15. İstikrarlı Kelime bükücü
-    if isinstance(en_uzun_dogru_kelime, int) and en_uzun_dogru_kelime >= 15:
+    if en_uzun_dogru_kelime >= 15:
         print("🧠 [SON KELİME BÜKÜCÜ!] -> 15 harften uzun, telaffuzu aşırı zor devasa bir kelimeyi devirdiniz!")
         kazanilan_basarim_var_mi = True
      
@@ -255,14 +261,20 @@ def basarimlari_kontrol_et(puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dog
 
 def rutbe_belirle(toplam_puan):
     print("🎖️  OYUNCU RÜTBENİZ:")
-    if toplam_puan >=50:
-        print("⚡ Rütbe: ÇAYLAK (Pratik yapmaya devam edin!)")
-    elif toplam_puan >= 100:
-        print("📚 Rütbe: ÖĞRENMEYE İSTEKLİ (Temeliniz oluşuyor)")
-    elif toplam_puan <= 500:
-        print("🚀 Rütbe: AKICI KONUŞUR (Güzel telaffuz, tebrikler!)")
-    elif toplam_puan >= 500:
-        print("🌟 Rütbe: DİL ÜSTADI / NATIVE SPEAKER (Harika bir performans!)")
+    if toplam_puan < 50:
+        print("💤 Seviye 1 - BAŞLANGIÇ (Henüz yolun başındasınız!)")
+    elif 50 <= toplam_puan < 150:
+        print("⚡ Seviye 2 - ÇAYLAK (Pratik yapmaya devam edin!)")
+    elif 150 <= toplam_puan < 500:
+        print("📚 Seviye 3 - ÖĞRENMEYE İSTEKLİ (Temeliniz hızlıca oluşuyor)")
+    elif 500 <= toplam_puan < 1500:
+        print("🚀 Seviye 4 - AKICI KONUŞUR (Güzel telaffuz, tebrikler!)")
+    elif 1500 <= toplam_puan < 4000:
+        print("🎖️  Seviye 5 - UZMAN MÜTERCİM (Yüksek doğruluk oranı!)")
+    elif 4000 <= toplam_puan < 10000:
+        print("🌟 Seviye 6 - DİL ÜSTADI / NATIVE SPEAKER (Harika bir performance!)")
+    else:
+        print("👑 Seviye 7 - KELİMELERİN EFENDİSİ (Kusursuz ve erişilmez seviye!)")
     print("=" * 59 + "\n")
 
 # --- ANA OYUN DÖNGÜSÜ ---
@@ -327,13 +339,15 @@ def oyna():
         print(f"💾 Güncel Genel Toplam Puanınız: {gecmis_toplam_puan + toplam_puan}")
         return
         
+    guncel_genel_toplam = gecmis_toplam_puan + toplam_puan
+
     print("=================== OYUN BİTTİ ===================")
     print(f"🏆 Bu Tur Skorunuz: {toplam_puan} / {maks_puan}")
-    print(f"💾 Genel Toplam Skorunuz: {gecmis_toplam_puan + toplam_puan}")
+    print(f"💾 Genel Toplam Skorunuz: {guncel_genel_toplam}")
     print(f"✅ Doğru Telaffuz Sayısı: {dogru_sayisi} / {TOPLAM_SORU}")
     
-    basarimlari_kontrol_et(toplam_puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dogru_kelime, son_soru_dogru_mu)
-    rutbe_belirle(toplam_puan) 
+    basarimlari_kontrol_et(toplam_puan, maks_puan, seviye_no, dogru_sayisi, en_uzun_dogru_kelime, son_soru_dogru_mu, guncel_genel_toplam)
+    rutbe_belirle(guncel_genel_toplam) 
 
 if __name__ == "__main__":
     oyna()
